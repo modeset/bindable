@@ -50,7 +50,9 @@ window.Bindable = (function() {
         el[this.instanceKey] = new _class(el)
       }
     } else  {
-      throw new Error('Bindable for key: ' + key + ' not found in Bindable.registry for instance ' + el)
+      if (typeof console !== "undefined" && console !== null) {
+        console.error('Bindable for key: ' + key + ' not found in Bindable.registry for instance ' + el)
+      }
     }
   };
 
