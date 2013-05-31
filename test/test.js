@@ -6,7 +6,8 @@ var MockClass = (function() {
   }
 
   MockClass.prototype.dispose = function() {
-    return this.disposed = true
+    this.disposed = true
+    return this.disposed
   };
 
   return MockClass
@@ -27,11 +28,13 @@ describe('Bindable', function() {
     this.bindable.dispose()
   })
 
+
   describe('@instance', function() {
     it('is accessible in the global namespace', function() {
       expect(Bindable).not.to.be(null)
     })
   })
+
 
   describe('#register', function() {
     it('defines a registry when a reference is registered', function() {
@@ -48,12 +51,14 @@ describe('Bindable', function() {
     })
   })
 
+
   describe('#bindAll', function() {
     return it('instantiates a bound class', function() {
       expect(this.bindable.getRefs('mock_class_key').length).to.be(1)
       expect(this.bindable.getRefs('mock_class_key')[0].state).to.be('instantiated')
     })
   })
+
 
   describe('#dispose', function() {
     it('calls dispose on the bindable instances', function() {
@@ -69,6 +74,7 @@ describe('Bindable', function() {
     })
   })
 
+
   describe('#bind', function() {
     it('binds a class instance with a DOM element', function() {
       var instance = this.bindable.getRefs('mock_class_key')[0]
@@ -76,11 +82,13 @@ describe('Bindable', function() {
     })
   })
 
+
   describe('@getClass', function() {
     it('returns the instance from a key', function() {
       expect(Bindable.getClass('mock_class_key')).to.be(MockClass)
     })
   })
+
 
   describe('@register', function() {
     it('registers a bindable object through the static method', function() {

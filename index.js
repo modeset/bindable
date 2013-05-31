@@ -1,4 +1,5 @@
 window.Bindable = (function() {
+  'use strict';
 
   function Bindable(context, dataKey) {
     context = context || 'body'
@@ -49,10 +50,12 @@ window.Bindable = (function() {
       if (!el[this.instanceKey]) {
         el[this.instanceKey] = new _class(el)
       }
+      return el[this.instanceKey]
     } else  {
       if (typeof console !== "undefined" && console !== null) {
         console.error('Bindable for key: ' + key + ' not found in Bindable.registry for instance ' + el)
       }
+      return void 0
     }
   };
 
