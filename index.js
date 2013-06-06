@@ -1,4 +1,5 @@
 window.Bindable = (function() {
+  'use strict';
 
   function Bindable(context, dataKey) {
     context = context || 'body'
@@ -26,9 +27,9 @@ window.Bindable = (function() {
 
 
   Bindable.prototype.dispose = function() {
-    var instance
+    var instance, bindable;
     for (var i = 0, len = this.bindables.length; i < len; i += 1) {
-      var bindable = this.bindables[i]
+      bindable = this.bindables[i]
       if (instance = bindable[this.instanceKey]) {
         if (typeof (instance != null ? instance.dispose : void 0) === 'function') {
           instance.dispose()
@@ -42,28 +43,33 @@ window.Bindable = (function() {
 
 
   Bindable.prototype.bind = function(el, dataKey) {
+    var _class, key;
     dataKey = dataKey || this.dataKey
-    var _class
-    var key = el.getAttribute(dataKey)
+    key = el.getAttribute(dataKey)
     if (_class = this.constructor.getClass(key)) {
       if (!el[this.instanceKey]) {
         el[this.instanceKey] = new _class(el)
       }
+      return el[this.instanceKey]
     } else  {
-      throw new Error('Bindable for key: ' + key + ' not found in Bindable.registry for instance ' + el)
+      if (typeof console !== "undefined" && console !== null) {
+        console.error('Bindable for key: ' + key + ' not found in Bindable.registry for instance ' + el)
+      }
+      return void 0
     }
   };
 
 
   Bindable.getClass = function(key) {
-    key = '"' + key + '"'
-    return (this.registry[key] ? this.registry[key]['class'] : void 0)
+    var _key = "" + key
+    return (this.registry[_key] ? this.registry[_key]['class'] : void 0)
   };
 
 
   Bindable.register = function(key, klass) {
+    var _key = "" + key
     this.registry = this.registry || {}
-    this.registry['"' + key + '"'] = {'class': klass}
+    this.registry[_key] = {'class': klass}
     return this.registry
   };
 
