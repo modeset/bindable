@@ -42,7 +42,6 @@ describe('Bindable', function() {
     })
 
     it('adds the MockClass with the "mock_class_key" key in the registry', function() {
-      console.log(Bindable.registry)
       expect(Bindable.registry['mock_class_key']['class']).to.be(MockClass)
     })
 

@@ -61,14 +61,15 @@ window.Bindable = (function() {
 
 
   Bindable.getClass = function(key) {
-    key = '"' + key + '"'
-    return (this.registry[key] ? this.registry[key]['class'] : void 0)
+    var _key = "" + key
+    return (this.registry[_key] ? this.registry[_key]['class'] : void 0)
   };
 
 
   Bindable.register = function(key, klass) {
+    var _key = "" + key
     this.registry = this.registry || {}
-    this.registry['"' + key + '"'] = {'class': klass}
+    this.registry[_key] = {'class': klass}
     return this.registry
   };
 
