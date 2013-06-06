@@ -27,9 +27,9 @@ window.Bindable = (function() {
 
 
   Bindable.prototype.dispose = function() {
-    var instance
+    var instance, bindable;
     for (var i = 0, len = this.bindables.length; i < len; i += 1) {
-      var bindable = this.bindables[i]
+      bindable = this.bindables[i]
       if (instance = bindable[this.instanceKey]) {
         if (typeof (instance != null ? instance.dispose : void 0) === 'function') {
           instance.dispose()
@@ -43,9 +43,9 @@ window.Bindable = (function() {
 
 
   Bindable.prototype.bind = function(el, dataKey) {
+    var _class, key;
     dataKey = dataKey || this.dataKey
-    var _class
-    var key = el.getAttribute(dataKey)
+    key = el.getAttribute(dataKey)
     if (_class = this.constructor.getClass(key)) {
       if (!el[this.instanceKey]) {
         el[this.instanceKey] = new _class(el)
