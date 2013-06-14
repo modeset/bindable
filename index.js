@@ -2,10 +2,10 @@ window.Bindable = (function() {
   'use strict';
 
   function Bindable(context, dataKey) {
-    context = context || 'body'
+    context = document[context] || document
     this.dataKey = dataKey || 'data-bindable'
     this.instanceKey = this.dataKey.replace(/data-/g, '') + 'Instance'
-    this.bindables = document[context].querySelectorAll('[' + this.dataKey + ']')
+    this.bindables = context.querySelectorAll('[' + this.dataKey + ']')
   }
 
 
