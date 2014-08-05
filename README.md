@@ -36,7 +36,7 @@ Bindable.register('toggle-group', ToggleGroup);
 As markup instantiating a class that is registered with `Bindable`:
 
 ```html
-<nav data-bindable="toggle-group">...</div>
+<nav data-bindable="toggle-group">...</nav>
 ```
 
 `Bindable` is created after the page has loaded
