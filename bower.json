@@ -1,0 +1,11 @@
+{
+  "name": "bindable",
+  "version": "0.0.0",
+  "main": "index.js",
+  "ignore": [
+    "**/.*",
+    "test",
+    "node_modules",
+    "components"
+  ]
+}
